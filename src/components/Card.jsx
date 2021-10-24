@@ -1,16 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { useParams } from "react-router";
+import React from "react";
 import numberToDay from "../../helpers/numberToDay";
 
 
-export default function Card() {
-  const {id} = useParams()
-  const dispatch = useDispatch()
-  const [details, setDetails] = useState({})
-  useEffect(()=>{
-    setDetails(dispatch(getDetails(id)))
-  },[id])
+export default function Card({details}) {
   return (
     <div class="p-4">
           <div class="h-full border-2 border-gray-400 border-opacity-60 bg-gray-500 bg-opacity-20 rounded-lg overflow-hidden">
