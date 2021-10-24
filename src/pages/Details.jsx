@@ -23,7 +23,6 @@ export default function Details() {
           <p className="text-4xl font-bold my-10 mx-5">{details.title}</p>
           <div className="flex flex-col sm:flex-row">
             <div className="px-5 text-justify flex flex-col gap-5 text-xl" dangerouslySetInnerHTML={{__html: `${details.content}`}}>
-              
             </div>
           </div>
         </div>
