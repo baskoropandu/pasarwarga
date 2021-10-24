@@ -1,32 +1,34 @@
 import React from 'react'
-import {BrowserRouter, Switch, Route} from 'react-router-dom'
+import {BrowserRouter, Switch, Route, Link} from 'react-router-dom'
 import {Provider} from 'react-redux'
 import store from './store/store'
+import HomePage from './pages/Home'
 import Details from './pages/Details'
+
 
 export default function App() {
   return (
     <Provider store={store}>
-      <header class="text-gray-600 body-font">
-        <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
-          <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-blue-500 rounded-full" viewBox="0 0 24 24">
-              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-            </svg>
-            <span class="ml-3 text-xl">Tailblocks</span>
-          </a>
-        </div>
-      </header>
-      <BrowserRouter>
-        <Switch>
-          <Route path="/articles/:id">
-            <Details/>
-          </Route>
-          <Route path="/">
-
-          </Route>
-        </Switch>
-      </BrowserRouter>
+      <div className="bg-gray-300">
+        <BrowserRouter>
+          <header className="text-gray-600 body-font">
+            <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+              <Link to="/" className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+                <img src="https://ik.imagekit.io/ztg2jcaeb0e/Untitled_design_5__EzL5SImP8.png?updatedAt=1635061909377" alt="" className="w-20 h-20 text-white p-1 bg-white rounded-full" />
+                <span className="ml-5 text-5xl">Articles</span>
+              </Link>
+            </div>
+          </header>
+          <Switch>
+            <Route path="/articles/:id">
+              <Details/>
+            </Route>
+            <Route path="/">
+              <HomePage/>
+            </Route>
+          </Switch>
+        </BrowserRouter>
+      </div>
     </Provider>
   );
 }

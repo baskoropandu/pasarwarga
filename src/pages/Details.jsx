@@ -1,25 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router";
-
+import { getDetails } from "../store/actions";
 
 export default function Details() {
   const {id} = useParams()
   const dispatch = useDispatch()
   const [details, setDetails] = useState({})
   useEffect(()=>{
-    setDetails(dispatch(getDetails(id)))
+    const details = dispatch(getDetails(id))
+    setDetails(details)
   },[id])
+  console.log(details);
+  
   return (
-    <section class="text-gray-600 body-font">
-      <div class="container px-5 py-24 mx-auto flex flex-col">
-        <div class="lg:w-4/6 mx-auto">
-          <div class="rounded-lg h-64 overflow-hidden">
-            <img alt="content" class="object-cover object-center h-full w-full" src={details.image}/>
+    <section className="text-gray-600 body-font">
+      <div className="container px-5 py-24 mx-auto flex flex-col">
+        <div className="lg:w-4/6 mx-auto">
+          <div className="rounded-lg overflow-hidden">
+            <img alt="content" className="object-cover object-center h-full w-full" src={details.image}/>
           </div>
-          <div class="flex flex-col sm:flex-row mt-10">
-            <div class="px-5 text-justify">
-              <p class="leading-relaxed text-lg mb-4">{details.content}</p>
+          <p className="text-4xl font-bold my-10 mx-5">{details.title}</p>
+          <div className="flex flex-col sm:flex-row">
+            <div className="px-5 text-justify flex flex-col gap-5 text-xl" dangerouslySetInnerHTML={{__html: `${details.content}`}}>
             </div>
           </div>
         </div>

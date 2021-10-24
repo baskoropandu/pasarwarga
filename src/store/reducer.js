@@ -1,10 +1,10 @@
-import {ADD_ARTICLES} from './actionType'
+import {ADD_ARTICLES} from './actionTypes'
 
 const initialState = {
     articles: []
 }
 
-function reducer(state = initialState, action) {
+export default function reducer(state = initialState, action) {
   switch (action.type) {
     case ADD_ARTICLES:
       
