@@ -1,16 +1,31 @@
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { useParams } from "react-router";
+import numberToDay from "../../helpers/numberToDay";
+
+
 export default function Card() {
+  const {id} = useParams()
+  const dispatch = useDispatch()
+  const [details, setDetails] = useState({})
+  useEffect(()=>{
+    setDetails(dispatch(getDetails(id)))
+  },[id])
   return (
     <div class="p-4">
           <div class="h-full border-2 border-gray-400 border-opacity-60 bg-gray-500 bg-opacity-20 rounded-lg overflow-hidden">
-            <img class="lg:h-48 md:h-36 w-full object-cover object-center" src="https://dummyimage.com/720x400" alt="blog"/>
+            <div class="lg:h-48 md:h-36 w-full object-cover object-center" src="https://dummyimage.com/720x400" alt="blog"/>
             <div class="p-6">
-              <h1 class="title-font text-lg font-medium text-gray-900 mb-3">The Catalyzer</h1>
+              <h1 class="title-font text-lg font-medium text-gray-900 mb-3">{details.title}</h1>
               <div class="flex">
                 <p class="leading-relaxed mb-3 w-2/12">
                   Published
                 </p>
                 <p class="w-1/12">
                   :
+                </p>
+                <p class="w-6/12">
+                  {details.published_at}
                 </p>
               </div>
               <div class="flex">
@@ -19,6 +34,9 @@ export default function Card() {
                 </p>
                 <p class="w-1/12">
                   :
+                </p>
+                <p class="w-6/12">
+                  {numberToDay(details.pub,details.expired_at)}
                 </p>
               </div>
               <div class="flex items-center flex-wrap ">
